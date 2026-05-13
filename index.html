@@ -7,7 +7,7 @@
   <meta name="description" content="BreakReal - AI bartender robot. Claim early-bird offer, save $500." />
   <!-- Facebook Pixel Code -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function()h{n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','3152071375217099');
     fbq('track','PageView');
   </script>
@@ -41,53 +41,112 @@
     .lead-form input{width:100%;padding:14px 20px;border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;background:rgba(255,255,255,0.06);color:#fff;font-size:15px;outline:none;font-family:var(--sans)}
     .lead-form input::placeholder{color:rgba(255,255,255,0.35)}.lead-form input:focus{border-color:var(--gold)}
     .lead-form button{width:100%;padding:15px;background:var(--gold);color:#fff;font-size:15px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:var(--sans)}
+    .lead-form button:disabled{opacity:0.6;cursor:not-allowed}
     .form-note{font-size:12px;color:rgba(255,255,255,0.3);margin-top:4px}
     .form-success{display:none;padding:20px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);border-radius:12px;color:var(--gold);font-weight:600;font-size:15px;max-width:400px;margin:0 auto}
+    .form-error{display:none;padding:12px;background:rgba(220,80,80,0.12);border:1px solid #dc5050;border-radius:8px;color:#ff8a8a;font-size:13px;max-width:400px;margin:8px auto 0;text-align:center}
     footer{border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px}
     footer a{color:var(--muted);text-decoration:none}
     @media(max-width:720px){nav{padding:0 20px}.nav-links{gap:20px}.lead-form{padding:0 8px}footer{flex-direction:column;gap:12px;text-align:center;padding:32px 20px}}
     </style>
   </head>
   <body>
-    <nav><a class="nav-logo" href="#">BreakReal</a>a><ul class="nav-links"><li><a href="#features">Features</a>a></li><li><a href="#claim">Get Early Access</a>a></li></ul>ul></nav>
+    <nav><a class="nav-logo" href="#">BreakReal</a><ul class="nav-links"><li><a href="#features">Features</a></li><li><a href="#claim">Get Early Access</a></li></ul></nav>
   <div class="hero">
-  <p class="hero-eyebrow">AI Beverage Robot - Limited Early Bird</p>p>
+  <p class="hero-eyebrow">AI Beverage Robot - Limited Early Bird</p>
   <h1>You Speak.<br>I Craft.</h1>
-  <p class="hero-sub">BreakReal is the world's first conversational AI bartender. Just tell it what you want - it handles the rest.</p>p>
-  <div><a class="btn btn-gold" href="#claim">Claim $500 Off</a>a><a class="btn btn-ghost" href="#features">See How It Works</a>a></div>
+  <p class="hero-sub">BreakReal is the world's first conversational AI bartender. Just tell it what you want - it handles the rest.</p>
+  <div><a class="btn btn-gold" href="#claim">Claim $500 Off</a><a class="btn btn-ghost" href="#features">See How It Works</a></div>
   </div>
-  <section id="features"><p class="section-label">Why BreakReal</p>p><h2>Bartending, reimagined.</h2>
+  <section id="features"><p class="section-label">Why BreakReal</p><h2>Bartending, reimagined.</h2>
   <div class="cards">
-    <div class="card"><div class="card-icon">&#127897;</div><h3>Voice-First Control</h3>h3><p>Say "make me a mojito" and watch it happen. No buttons, no apps - just conversation.</p></div>
+    <div class="card"><div class="card-icon">&#127897;</div><h3>Voice-First Control</h3><p>Say "make me a mojito" and watch it happen. No buttons, no apps - just conversation.</p></div>
   <div class="card"><div class="card-icon">&#127864;</div><h3>300+ Recipes Built-In</h3><p>From classic cocktails to custom creations, BreakReal knows every pour and proportion.</p></div>
   <div class="card"><div class="card-icon">&#9889;</div><h3>Ready in Seconds</h3><p>Precision dispensing technology means your drink is crafted in under 30 seconds, every time.</p></div>
-  </div></section>section>
+  </div></section>
   <div class="divider"></div>
   <section id="claim"><p class="claim-label">Early Bird Offer</p><h2>Save $500 on the first batch.</h2>
   <p class="sub">Join the waitlist now and lock in your exclusive early-bird pricing before we sell out.</p>
-  <form class="lead-form" id="leadForm" novalidate>
+  <form class="lead-form" id="leadForm" action="https://formspree.io/f/mpqbnovb" method="POST" novalidate>
   <input type="text" id="leadName" name="name" placeholder="Your name" required />
   <input type="email" id="leadEmail" name="email" placeholder="Your email address" required />
-  <button type="submit">Claim My Early-Bird Spot</button>button>
+  <button type="submit" id="leadSubmitBtn">Claim My Early-Bird Spot</button>
   <p class="form-note">No spam. Unsubscribe anytime.</p>
-  </form>form>
+  </form>
+  <div class="form-error" id="formError">Something went wrong. Please try again.</div>
   <div class="form-success" id="formSuccess">You are on the list! We will be in touch soon.</div>
-  </section>section>
-  <footer><span>2026 BreakReal. All rights reserved.</span><div style="display:flex;gap:20px"><a href="#">Privacy</a>a><a href="#">Contact</a>a></div></footer>
+  </section>
+  <footer><span>2026 BreakReal. All rights reserved.</span><div style="display:flex;gap:20px"><a href="#">Privacy</a><a href="#">Contact</a></div></footer>
   <script>
-  document.getElementById('leadForm').addEventListener('submit',function(e){
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    var form = document.getElementById('leadForm');
+    if(!form) return;
+    utmKeys.forEach(function(key){
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = params.get(key) || '';
+      form.appendChild(input);
+    });
+    var refInput = document.createElement('input');
+    refInput.type = 'hidden';
+    refInput.name = 'referrer';
+    refInput.value = document.referrer || 'direct';
+    form.appendChild(refInput);
+    var urlInput = document.createElement('input');
+    urlInput.type = 'hidden';
+    urlInput.name = 'landing_url';
+    urlInput.value = window.location.href;
+    form.appendChild(urlInput);
+  })();
+
+  document.getElementById('leadForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var n=document.getElementById('leadName').value.trim();
-    var em=document.getElementById('leadEmail').value.trim();
-    if(!n||!em){alert('Please fill in all fields.');return;}
-    if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:'BreakReal Early Bird',content_category:'Consumer Electronics'});}
-    document.getElementById('leadForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
+    var form = e.target;
+    var btn = document.getElementById('leadSubmitBtn');
+    var errBox = document.getElementById('formError');
+    var n = document.getElementById('leadName').value.trim();
+    var em = document.getElementById('leadEmail').value.trim();
+    if(!n || !em){ errBox.textContent = 'Please fill in all fields.'; errBox.style.display = 'block'; return; }
+    errBox.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    var data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if(response.ok){
+        if(typeof fbq !== 'undefined'){
+          fbq('track', 'Lead', { content_name: 'BreakReal Early Bird', content_category: 'Consumer Electronics' });
+        }
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        response.json().then(function(d){
+          errBox.textContent = (d && d.errors && d.errors[0] && d.errors[0].message) || 'Submission failed. Please try again.';
+          errBox.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Claim My Early-Bird Spot';
+        }).catch(function(){
+          errBox.textContent = 'Submission failed. Please try again.';
+          errBox.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Claim My Early-Bird Spot';
+        });
+      }
+    }).catch(function(){
+      errBox.textContent = 'Network error. Please check your connection and try again.';
+      errBox.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Claim My Early-Bird Spot';
+    });
   });
   </script>
-  </body></html>html></span></footer></p></h3></h3></p>
-  </div></h1></li></li></nav>
   </body>
-  </style></noscript>
-  </script></title>
-  </head>
+</html>
+
